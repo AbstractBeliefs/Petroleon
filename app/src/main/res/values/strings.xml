@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Petroleon9000</string>
+
+    <string name="distance_label">Radius: </string>
+    <string name="search_label">Search</string>
+    <string name="details_label">Details</string>
+</resources>

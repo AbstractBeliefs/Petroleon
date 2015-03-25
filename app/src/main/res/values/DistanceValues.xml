@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="distance_values">
+        <item>5 KM</item>
+        <item>10 KM</item>
+        <item>20 KM</item>
+        <item>30 KM</item>
+        <item>40 KM</item>
+        <item>50 KM</item>
+    </string-array>
+</resources>
