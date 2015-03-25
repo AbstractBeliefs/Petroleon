@@ -1,6 +1,7 @@
 package info.pulham.petroleon9000;
 
-import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -8,6 +9,7 @@ import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,9 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends Activity {
+public class HomeActivity extends FragmentActivity {
     private static final String DEBUGTAG = "HomeActivity";
 
+    // Location handling with GPS
     private String GPS = LocationManager.GPS_PROVIDER;
     private Location lastKnownLocation = new Location(GPS);
     private LocationManager GPSManager; // Can't get fulfill this until oncreate
@@ -44,6 +47,9 @@ public class HomeActivity extends Activity {
         public void onProviderDisabled(String provider) {}
     };
     private Handler GPSUpdateHandler = new Handler();
+
+    // Fragment handling
+    private FragmentManager fragManager = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +71,12 @@ public class HomeActivity extends Activity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distanceSpinner.setAdapter(adapter);
+
+        // Set up the default fragment, the map view
+        FragmentTransaction transaction = fragManager.beginTransaction();
+        MapViewFragment mapFrag = new MapViewFragment();
+        transaction.add(R.id.view_container, mapFrag);
+        transaction.commit();
     }
 
     public void searchButtonClicked(View view){
