@@ -7,15 +7,18 @@ import android.os.Parcelable;
 public class PetrolStation implements Parcelable {
     public String id;
     public String name;
+    public String vicinity;
     public Location location;
 
     public int petrol;
     public int diesel;
     public int lpg;
 
-    public PetrolStation(String id, String name, double latitude, double longitude, int petrol, int diesel, int lpg){
+    public PetrolStation(String id, String name, String vicinity, double latitude, double longitude, int petrol, int diesel, int lpg){
         this.id = id;
         this.name = name;
+        this.vicinity = vicinity;
+
         this.location = new Location(name);
         this.location.setLatitude(latitude);
         this.location.setLongitude(longitude);
@@ -34,6 +37,7 @@ public class PetrolStation implements Parcelable {
     @Override public void writeToParcel(Parcel pc, int flags){
         pc.writeString(this.id);
         pc.writeString(this.name);
+        pc.writeString(this.vicinity);
 
         pc.writeDouble(this.location.getLatitude());
         pc.writeDouble(this.location.getLongitude());
@@ -56,6 +60,7 @@ public class PetrolStation implements Parcelable {
     public PetrolStation(Parcel pc){
         this.id = pc.readString();
         this.name = pc.readString();
+        this.vicinity = pc.readString();
 
         this.location = new Location(this.name);
         this.location.setLatitude(pc.readDouble());

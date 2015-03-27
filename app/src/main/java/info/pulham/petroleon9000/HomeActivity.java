@@ -138,6 +138,7 @@ public class HomeActivity extends Activity {
                             new PetrolStation(
                                     stationsJsonArray.getJSONObject(i).getString("id"),
                                     stationsJsonArray.getJSONObject(i).getString("name"),
+                                    stationsJsonArray.getJSONObject(i).getString("vicinity"),
                                     stationsJsonArray.getJSONObject(i).getDouble("latitude"),
                                     stationsJsonArray.getJSONObject(i).getDouble("longitude"),
                                     stationsJsonArray.getJSONObject(i).getInt("petrol"),
