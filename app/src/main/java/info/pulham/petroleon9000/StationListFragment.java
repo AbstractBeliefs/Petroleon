@@ -1,11 +1,13 @@
 package info.pulham.petroleon9000;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.List;
@@ -26,7 +28,20 @@ public class StationListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_station_list, container, false);
+        View fragmentLayout = inflater.inflate(R.layout.fragment_station_list, container, false);
+        ListView petrolStationListView = (ListView) fragmentLayout.findViewById(R.id.station_list);
+        petrolStationListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                PetrolStation clickedStation = (PetrolStation) parent.getItemAtPosition(position);
+
+                //Intent stationDetailsIntent = new Intent(getActivity(), );
+                //Add petrolStation to intent
+                //startActivity(stationDetailIntent);
+            }
+        });
+
+        return fragmentLayout;
     }
 
     public void updateStations(List<PetrolStation> stationList){
