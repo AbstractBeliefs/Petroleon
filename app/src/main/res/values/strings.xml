@@ -5,6 +5,8 @@
     <string name="search_label">Search</string>
     <string name="details_label">Details</string>
 
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_station_details">Station Details</string>
+    <string name="petrol_unit">p/L</string>
+    <string name="diesel_unit">p/L</string>
+    <string name="lpg_unit">p/L</string>
 </resources>

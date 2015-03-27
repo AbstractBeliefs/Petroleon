@@ -35,9 +35,9 @@ public class StationListFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 PetrolStation clickedStation = (PetrolStation) parent.getItemAtPosition(position);
 
-                //Intent stationDetailsIntent = new Intent(getActivity(), );
-                //Add petrolStation to intent
-                //startActivity(stationDetailIntent);
+                Intent stationDetailsIntent = new Intent(getActivity(), StationDetailsActivity.class);
+                stationDetailsIntent.putExtra("station", clickedStation);
+                startActivity(stationDetailsIntent);
             }
         });
 
