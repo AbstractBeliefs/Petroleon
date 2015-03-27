@@ -1,6 +1,8 @@
 package info.pulham.petroleon9000;
 
 import android.app.Activity;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
@@ -30,6 +32,7 @@ import java.util.List;
 public class HomeActivity extends Activity {
     private static final String DEBUGTAG = "HomeActivity";
 
+    // GPS Handling
     private String GPS = LocationManager.GPS_PROVIDER;
     private Location lastKnownLocation = new Location(GPS);
     private LocationManager GPSManager; // Can't get fulfill this until oncreate
@@ -39,11 +42,15 @@ public class HomeActivity extends Activity {
             lastKnownLocation = location;
             GPSManager.removeUpdates(this);
         }
+
         public void onStatusChanged(String provider, int status, Bundle extras) {}
         public void onProviderEnabled(String provider) {}
         public void onProviderDisabled(String provider) {}
     };
     private Handler GPSUpdateHandler = new Handler();
+
+    // Fragment Handling
+    FragmentManager fragMan = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,12 @@ public class HomeActivity extends Activity {
         );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distanceSpinner.setAdapter(adapter);
+
+        // Setup the list fragment
+        FragmentTransaction transaction = fragMan.beginTransaction();
+        StationListFragment listFrag = new StationListFragment();
+        transaction.add(R.id.view_container, listFrag);
+        transaction.commit();
     }
 
     public void searchButtonClicked(View view){
@@ -81,12 +94,6 @@ public class HomeActivity extends Activity {
                 lat, lon, radius
         );
         new getStationsTask().execute(url);
-    }
-    public void detailsButtonClicked(View view){
-        Log.d(DEBUGTAG, "Details button clicked50000");
-    }
-    public void modeButtonClicked(View view){
-        Log.d(DEBUGTAG, "Mode button clicked");
     }
 
     private class getStationsTask extends AsyncTask<String, Void, List<PetrolStation>> {
@@ -148,7 +155,10 @@ public class HomeActivity extends Activity {
 
         // Apply the retrieved API results
         @Override
-        protected void  onPostExecute(List<PetrolStation> results){}
+        protected void  onPostExecute(List<PetrolStation> results){
+            StationListFragment listFrag = (StationListFragment) fragMan.findFragmentById(R.id.view_container);
+            listFrag.updateStations(results);
+        }
     }
     private Runnable LocationUpdater = new Runnable(){
         @Override

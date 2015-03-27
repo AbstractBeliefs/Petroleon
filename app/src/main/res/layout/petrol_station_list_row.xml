@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAAAAAA"
+        android:id="@+id/station_name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAAAAAA"
+        android:id="@+id/petrol_price"
+        android:background="#33cc33"
+        android:textColor="#000000"
+        android:layout_alignBaseline="@+id/station_name"
+        android:layout_toStartOf="@+id/diesel_price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAAAAAA"
+        android:id="@+id/diesel_price"
+        android:textColor="#FFFFFF"
+        android:background="#000000"
+        android:layout_alignBaseline="@+id/station_name"
+        android:layout_toStartOf="@+id/lpg_price" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AAAAAAA"
+        android:id="@+id/lpg_price"
+        android:background="#cccc00"
+        android:textColor="#000000"
+        android:layout_alignBaseline="@+id/station_name"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
