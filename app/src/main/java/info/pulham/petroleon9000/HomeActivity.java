@@ -26,6 +26,8 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -151,6 +153,7 @@ public class HomeActivity extends Activity {
             } catch (Exception exception) {
                 Log.e(DEBUGTAG, "Background API get: " + exception.getMessage());
             }
+
             return petrolStations;
         }
 
@@ -158,6 +161,29 @@ public class HomeActivity extends Activity {
         @Override
         protected void  onPostExecute(List<PetrolStation> results){
             StationListFragment listFrag = (StationListFragment) fragMan.findFragmentById(R.id.view_container);
+            // Sort by the price of petrol
+            Collections.sort(results, new Comparator<PetrolStation>() {
+                public int compare(PetrolStation s1, PetrolStation s2) {
+                    // Equality handling
+                    if (s1.petrol == s2.petrol){
+                        return 0;
+                    }
+
+                    // Unknown prices (no need to check the other side. If we weren't equal
+                    // and one is zero, the other is definitely bigger.
+                    // (Unless one's minus, in which case you're under attack anyway.)
+                    // This looks weird (the signs are "wrong") but in the special case that
+                    // we have one as unknown, we want to push it back.
+                    if (s1.petrol == 0) {return 1;}
+                    if (s2.petrol == 0) {return -1;}
+
+                    if (s1.petrol > s2.petrol) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                }
+            });
             listFrag.updateStations(results);
         }
     }
