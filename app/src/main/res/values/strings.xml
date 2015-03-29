@@ -6,7 +6,19 @@
     <string name="details_label">Details</string>
 
     <string name="title_activity_station_details">Station Details</string>
+
+    <string name="petrol_label">Petrol :</string>
+    <string name="diesel_label">Diesel: </string>
+    <string name="lpg_label">LPG: </string>
+
+    <string name="petrol_hint">Petrol</string>
+    <string name="diesel_hint">Diesel</string>
+    <string name="lpg_hint">LPG</string>
+
     <string name="petrol_unit">p/L</string>
     <string name="diesel_unit">p/L</string>
     <string name="lpg_unit">p/L</string>
+
+    <string name="save_button">Save</string>
+    <string name="navigate_button">Navigate</string>
 </resources>

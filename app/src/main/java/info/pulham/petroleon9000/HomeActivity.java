@@ -7,6 +7,8 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -95,7 +98,14 @@ public class HomeActivity extends Activity {
                 "http://apps.pulham.info/getstations?lat=%f&lon=%f&radius=%d",
                 lat, lon, radius
         );
-        new getStationsTask().execute(url);
+
+        if (connected()) {
+            new getStationsTask().execute(url);
+        } else {
+            Context context = getApplicationContext();
+            Toast toast = Toast.makeText(context, "No connection to search with!", Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 
     private class getStationsTask extends AsyncTask<String, Void, List<PetrolStation>> {
@@ -194,4 +204,13 @@ public class HomeActivity extends Activity {
             GPSUpdateHandler.postDelayed(LocationUpdater, 5 * 60 * 1000);   // Rerun every 5 mins
         }
     };
+
+    public boolean connected(){
+        ConnectivityManager connManager = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected())
+            return true;
+        else
+            return false;
+    }
 }

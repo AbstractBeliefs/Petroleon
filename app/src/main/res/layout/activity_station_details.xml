@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Petrol: "
+        android:text="@string/petrol_label"
         android:id="@+id/petrol_label"
         android:background="#33cc33"
         android:textColor="#000000"
@@ -39,9 +39,10 @@
         android:layout_height="wrap_content"
         android:text="This is a price edit"
         android:id="@+id/petrol_edit"
-        android:hint="PetrolPrice"
+        android:hint="@string/petrol_hint"
         android:layout_below="@+id/station_vicinity"
-        android:layout_toEndOf="@+id/petrol_label" />
+        android:layout_toEndOf="@+id/petrol_label"
+        android:inputType="number" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Diesel: "
+        android:text="@string/diesel_label"
         android:id="@+id/diesel_label"
         android:textColor="#FFFFFF"
         android:background="#000000"
@@ -67,9 +68,10 @@
         android:layout_height="wrap_content"
         android:text="This is a price edit"
         android:id="@+id/diesel_edit"
-        android:hint="DieselPrice"
+        android:hint="@string/diesel_hint"
         android:layout_below="@+id/petrol_edit"
-        android:layout_alignStart="@+id/petrol_edit" />
+        android:layout_alignStart="@+id/petrol_edit"
+        android:inputType="number" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="LPG: "
+        android:text="@string/lpg_label"
         android:id="@+id/lpg_label"
         android:background="#cccc00"
         android:textColor="#000000"
@@ -96,9 +98,10 @@
         android:layout_height="wrap_content"
         android:text="This is a price edit"
         android:id="@+id/lpg_edit"
-        android:hint="LPGPrice"
+        android:hint="@string/lpg_hint"
         android:layout_below="@+id/diesel_edit"
-        android:layout_alignStart="@+id/diesel_edit" />
+        android:layout_alignStart="@+id/diesel_edit"
+        android:inputType="number"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,14 +115,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="@string/save_button"
         android:id="@+id/save"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="saveStation" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Navigate"
+        android:text="@string/navigate_button"
         android:id="@+id/navigate"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
